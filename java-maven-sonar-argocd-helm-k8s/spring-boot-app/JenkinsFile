@@ -54,6 +54,7 @@ pipeline {
             checkout scm
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
+                    pwd
                     git config user.email "suryachandrucs@gmail.com"
                     git config user.name "suryaln"
                     BUILD_NUMBER=${BUILD_NUMBER}
