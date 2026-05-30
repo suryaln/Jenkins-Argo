@@ -6,12 +6,12 @@ pipeline {
     }
   }
     stages {
-  //  stage('Checkout') {
-   //   steps {
-    //    sh 'echo passed'
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
        // git branch: 'main', url: 'https://github.com/suryaln/Jenkins-Argo.git'
-     // }
-  //  }
+      }
+    }
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
@@ -45,18 +45,13 @@ pipeline {
         }
       }
     }
-    stage('Checkout') {
-      steps {
-        sh 'echo passed'
-        checkout scm
-      }
-    }
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "Jenkins-Argo"
             GIT_USER_NAME = "suryaln"
         }
         steps {
+            checkout scm
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     git config user.email "suryachandrucs@gmail.com"
