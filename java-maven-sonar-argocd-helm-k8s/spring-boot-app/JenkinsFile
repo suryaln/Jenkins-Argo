@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        git branch: 'main', url: 'https://github.com/suryaln/Jenkins-Argo.git'
+       // git branch: 'main', url: 'https://github.com/suryaln/Jenkins-Argo.git'
       }
     }
     stage('Build and Test') {
@@ -43,6 +43,12 @@ pipeline {
                 dockerImage.push()
             }
         }
+      }
+    }
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+        git branch: 'main', url: 'https://github.com/suryaln/Jenkins-Argo.git'
       }
     }
     stage('Update Deployment File') {
